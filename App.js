@@ -24,22 +24,24 @@ MongoClient.connect(url)
     db = database.db("testDb");
     console.log("succes");
   })
-  .then(() => {
-    db.collection("testCollection")
-      .find({test: true})
-      .toArray(function (err, docs) {
-        if (err) {
-          console.error(err);
-        }
-        return JSON.stringify(docs)
-      }).then((res) => {
-        console.log(res);
-      })
-  })
   .catch((err) => {
     console.log("Failed", err);
   });
 
+  app.get('/db', (req,res) => {
+    // get form values from req 
+
+      // Create a document to insert
+      const doc = {
+        title: "Record of a Shriveled Datum",
+        content: "No bytes, no problem. Just insert a document, in MongoDB",
+      }
+    db.collection("testCollection").insertOne(doc).then((res) => {
+      console.log('inserted correctly');      
+    }).catch((err) => {
+      console.log(err);
+    })
+  })
 // app.get('/db', function(req,res) {
 //   db.collection('testCollection').find({}).toArray(function(err, docs) {
 //     if(err) { console.error(err) }
