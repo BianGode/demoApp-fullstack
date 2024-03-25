@@ -28,20 +28,26 @@ MongoClient.connect(url)
     console.log("Failed", err);
   });
 
-  app.get('/db', (req,res) => {
-    // get form values from req 
+app.get("/db", (req, res) => {
+  // get form values from req
 
-      // Create a document to insert
-      const doc = {
-        title: "Record of a Shriveled Datum",
-        content: "No bytes, no problem. Just insert a document, in MongoDB",
+  db.collection("testCollection")
+    .find({})
+    .toArray((err, docs) => {
+      if(err) {
+        console.log(err);
       }
-    db.collection("testCollection").insertOne(doc).then((res) => {
-      console.log('inserted correctly');      
-    }).catch((err) => {
-      console.log(err);
+      return JSON.stringify(docs);
+    }).then((resFinal) => {
+      res.send(resFinal);
+      // db.close();
     })
-  })
+  // then((res) => {
+  // }).catch((err) => {
+  //   console.log(err);
+  // })
+});
+
 // app.get('/db', function(req,res) {
 //   db.collection('testCollection').find({}).toArray(function(err, docs) {
 //     if(err) { console.error(err) }
