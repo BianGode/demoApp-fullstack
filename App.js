@@ -16,29 +16,33 @@ app.post("/post", (req, res) => {
 });
 
 let db = 0;
-var url = "mongodb://127.0.0.1:27017/testDb";
+var url = "mongodb://127.0.0.1:27017/Users";
 // MongoClient.connect('mongodb://127.0.0.1:27017/', function(err, client) {
 //     if(err) { console.error(err) }
 //     db = client.db('testDb') // once connected, assign the connection to the global variable
 // })
 mongoose.connect(url)
   .then((database) => {
-    db = database.db
     console.log('success connection');
-    // console.log(database.status);
-    // db = database.db("testDb");
   })
   .catch((err) => {
     console.log("Failed", err); 
   });
 
 app.post("/login", (req, res) => {
-  // console.log(req.body);
-  const { email, password } = req.body;
-  UserModel.find({ email: email }).then((user) => {
+
+  const { email, password } = req.body;  
+  // UserModel.findOne({email: email}).then((user)=> {
+  //   console.log(user);
+  // }).catch((err) => {
+  //   console.log(err);
+  // })
+  UserModel.findOne({ email: email }).then((user) => {
+    // console.log(user);
     if (user) {
       if (user.password === password) {
-        res.json("Success!!!");
+        console.log('Succcccccccc');
+        res.json("Success");
       } else {
         res.json("The password is incorrect");
       }
