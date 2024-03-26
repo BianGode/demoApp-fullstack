@@ -21,7 +21,7 @@ var url = "mongodb://127.0.0.1:27017/Users";
 //     if(err) { console.error(err) }
 //     db = client.db('testDb') // once connected, assign the connection to the global variable
 // })
-mongoose.connect(url)
+mongoose.connect(url, { })
   .then((database) => {
     console.log('success connection');
   })
@@ -31,7 +31,7 @@ mongoose.connect(url)
 
 app.post("/login", (req, res) => {
 
-  const { email, password } = req.body;  
+  const { email, password } = req.body;
   // UserModel.findOne({email: email}).then((user)=> {
   //   console.log(user);
   // }).catch((err) => {
