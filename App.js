@@ -56,8 +56,6 @@ app.post("/api/signup", (req, res) => {
     await setDoc(doc(db, "Users", name), {
       name: name,
       email: email
-    }).then((setDocResult) => {
-      console.log(setDocResult);
     }).catch((err) => {
       console.log(err);
     })
