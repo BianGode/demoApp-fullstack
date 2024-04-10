@@ -33,7 +33,7 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth();
-const db = getFirestore(app);
+const db = getFirestore(firebaseApp);
 
 app.post("/api/login", (req, res) => {
   const { email, password } = req.body;
