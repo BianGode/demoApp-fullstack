@@ -29,8 +29,6 @@ const firebaseConfig = {
   appId: "1:292101105111:web:969d441ae8e9c8ded19792",
 };
 
-// Initialize Firebase
-
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(firebaseApp);
@@ -64,6 +62,7 @@ app.post("/api/signup", (req, res) => {
   })
   // after sign up. create a user in the user table to link a cat to
 })
+
 // let db = 0;
 // var url = "mongodb://127.0.0.1:27017/Users";
 // MongoClient.connect('mongodb://127.0.0.1:27017/', function(err, client) {
